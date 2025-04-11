@@ -61,9 +61,9 @@ export class Task{
         buttonEdit.classList.add("edit");
         buttonDelete.classList.add("delete");
 
-        buttonDone.innerText = "Mark as Done";
-        buttonEdit.innerText = "Edit Task";
-        buttonDelete.innerText = "Delete";
+        buttonDone.innerText = "Marcar como pronto";
+        buttonEdit.innerText = "Editar";
+        buttonDelete.innerText = "Deletar";
 
         buttonOptions.appendChild(buttonDone);
         if (!this.Done) buttonOptions.appendChild(buttonEdit);
