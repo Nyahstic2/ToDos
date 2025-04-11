@@ -55,7 +55,6 @@ function addTarefa(e){
         tarefasArr.push(tarefa);
         form.reset();
         console.table(tarefasArr);
-        localStorage.setItem("todos", tarefas);
         updateTarefas();
     }
     else{
