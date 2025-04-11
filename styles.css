@@ -1,0 +1,269 @@
+:root {
+  --primary: #4361ee;
+  --secondary: #3f37c9;
+  --success: #4cc9f0;
+  --danger: #f72585;
+  --warning: #f8961e;
+  --light: #f8f9fa;
+  --dark: #212529;
+  --gray: #6c757d;
+  --white: #ffffff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #f5f5f5;
+  color: var(--dark);
+  line-height: 1.6;
+  padding: 1rem;
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+h1 {
+  color: var(--primary);
+  text-align: center;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+#formTarefa {
+  background: var(--white);
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
+  flex-shrink: 0;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-weight: 500;
+  color: var(--dark);
+  font-size: 0.9rem;
+}
+
+input, textarea, select {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  transition: border-color 0.2s;
+}
+
+textarea {
+  min-height: 60px;
+  resize: vertical;
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.1);
+}
+button{
+  margin-top: 0.4vh;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background-color 0.2s;
+  width: 100%;
+}
+
+button[type="submit"] {
+  background-color: var(--primary);
+  color: white;
+}
+
+button[type="submit"]:hover {
+  background-color: var(--secondary);
+}
+
+#tarefas {
+  flex-grow: 1;
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+  padding: 0.5rem;
+}
+
+.todo {
+  background: var(--white);
+  padding: 1rem;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  position: relative;
+  height: fit-content;
+}
+
+.todo h1 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: var(--dark);
+  text-align: left;
+}
+
+.todo h3 {
+  font-size: 0.9rem;
+  color: var(--gray);
+  margin-bottom: 0.5rem;
+}
+
+.todo p {
+  color: var(--gray);
+  margin-bottom: 0.75rem;
+  font-size: 0.9rem;
+}
+
+.button-options {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.button-options button {
+  padding: 0.3rem 0.6rem;
+  font-size: 0.8rem;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+}
+
+.done {
+  background-color: var(--success);
+  color: white;
+}
+
+.todo.taskdone {
+  opacity: 0.7;
+  background-color: rgba(76, 201, 240, 0.1);
+}
+
+.todo.taskdone h1,
+.todo.taskdone h3,
+.todo.taskdone p {
+  text-decoration: line-through;
+  color: var(--gray);
+}
+
+.todo.taskdone .button-options button.done {
+  display: none;
+}
+
+.delete {
+  background-color: var(--danger);
+  color: white;
+}
+
+.edit {
+  background-color: var(--warning);
+  color: white;
+}
+
+@media (max-width: 600px) {
+  body {
+    padding: 0.5rem;
+    flex-direction: column;
+  }
+  
+  .main-container {
+    flex-direction: column;
+    position: relative !important;
+    top: 0 !important;
+    left: 0 !important;
+  }
+  
+  #formTarefa {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  
+  #tarefas {
+    grid-template-columns: 1fr;
+    max-height: none;
+    overflow-y: visible !important;
+  }
+}
+
+/* Importance level styles */
+.todo.notimportant {
+  border-left: 4px solid var(--gray);
+  background-color: rgba(108, 117, 125, 0.03);
+  opacity: 0.9;
+}
+
+.todo.kindaimportant {
+  border-left: 4px solid var(--warning);
+  background-color: rgba(248, 150, 30, 0.05);
+}
+
+.todo.reallyimportant {
+  border-left: 4px solid var(--danger);
+  background-color: rgba(247, 37, 133, 0.05);
+  animation: shake 0.5s 5;
+  box-shadow: 0 0 10px rgba(247, 37, 133, 0.2);
+}
+
+@keyframes shake {
+  0% { transform: translateX(2px); }
+  25% { transform: translateX(-2px); }
+  50% { transform: translateX(2px); }
+  75% { transform: translateX(-2px); }
+}
+
+.todo.taskdone.kindaimportant,
+.todo.taskdone.reallyimportant,
+.todo.taskdone.notimportant {
+  animation: none;
+  opacity: 0.7;
+}.main-container {
+  margin: 0;
+  display: flex;
+  width: 95vw;
+  gap: 1rem;
+  height: 89vh;
+  padding: 0;
+  position: absolute;
+  left: 5vh;
+  top: 10vh;
+
+}
+
+#formTarefa {
+  width: 25%;
+  flex-shrink: 0;
+  height: fit-content;
+}
+
+#tarefas {
+  flex-grow: 1;
+}
+
+@media (max-width: 600px) {
+  .main-container {
+    flex-direction: column;
+  }
+  
+  #formTarefa {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+}

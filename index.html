@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciador de Tarefas</title>
+    <link rel="stylesheet" href="styles.css">
+    <script type="module" src="./js/manager.js" defer></script>
+</head>
+<body>
+  <h1>Gerenciador de Tarefas</h1>
+  <div class="main-container">
+    <div id="formTarefa">
+      <form id="formformTarefa">
+          <label for="nome">Nome:</label>
+          <input id="nome" name="nome" autocomplete="off" autocapitalize required>
+          <label for="descrição">Descrição:</label>
+          <textarea id="descricao" name="descrição" autocomplete="off" autocapitalize></textarea>
+          <label for="nivel">Importância:</label>
+          <select id="nivel" name="nivel">
+              <option value="baixo">Baixo</option>
+              <option value="médio">Médio</option>
+              <option value="alto">Alto</option>
+          </select>
+          <button type="submit">Adicionar</button>
+      </form>
+      <button id="changeOrder">Opções de Visualização</button>
+      
+      <button id="addlea">Add aleatório</button>
+    </div>
+    <div id="tarefas">
+        
+    </div>
+  </div>
+</body>
+</html>
