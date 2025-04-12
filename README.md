@@ -38,4 +38,4 @@ Navegador web moderno com suporte a:
 
 ## Licença
 
-MIT License - veja o arquivo LICENSE para detalhes.
+Distribuído sob a licença MIT. Consulte o arquivo [LICENSE](LICENSE) para obter informações detalhadas.
