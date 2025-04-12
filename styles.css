@@ -1,13 +1,37 @@
 :root {
-  --primary: #4361ee;
-  --secondary: #3f37c9;
-  --success: #4cc9f0;
-  --danger: #f72585;
-  --warning: #f8961e;
-  --light: #f8f9fa;
-  --dark: #212529;
+  /* Base colors */
+  --primary: #6a0dad; /* Rich purple */
+  --secondary: #9b59b6; /* Lighter purple */
+  --success: #5cb85c; /* Softer green */
+  --danger: #d9534f;  /* Deeper red */
+  --warning: #f0ad4e; /* Softer yellow */
   --gray: #6c757d;
-  --white: #ffffff;
+
+  /* Light theme */
+  --light-bg: #f5f5f5;
+  --light-text: #212529;
+  --light-surface: #ffffff;
+  --light-border: #ddd;
+  --light-shadow: rgba(0, 0, 0, 0.1);
+  --light-disabled: rgba(0, 0, 0, 0.1);
+
+  /* Dark theme */
+  --dark-bg: #212529;
+  --dark-text: #f8f9fa;
+  --dark-surface: #343a40;
+  --dark-border: #495057;
+  --dark-shadow: rgba(0, 0, 0, 0.3);
+  --dark-disabled: rgba(255, 255, 255, 0.1);
+
+  /* Dynamic properties */
+  --bg: light-dark(var(--light-bg), var(--dark-bg));
+  --text: light-dark(var(--light-text), var(--dark-text));
+  --surface: light-dark(var(--light-surface), var(--dark-surface));
+  --border: light-dark(var(--light-border), var(--dark-border));
+  --shadow: light-dark(var(--light-shadow), var(--dark-shadow));
+  --disabled: light-dark(var(--light-disabled), var(--dark-disabled));
+
+  color-scheme: light dark;
 }
 
 * {
@@ -18,8 +42,8 @@
 }
 
 body {
-  background-color: #f5f5f5;
-  color: var(--dark);
+  background-color: var(--bg);
+  color: var(--text);
   line-height: 1.6;
   padding: 1rem;
   max-width: 800px;
@@ -38,19 +62,21 @@ h1 {
 }
 
 #formTarefa {
-  background: var(--white);
+  background: var(--surface);
+  color: var(--text);
   padding: 1rem;
   border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 5px var(--shadow);
   margin-bottom: 1rem;
   flex-shrink: 0;
+  height: fit-content;
 }
 
 label {
   display: block;
   margin-bottom: 0.25rem;
   font-weight: 500;
-  color: var(--dark);
+  color: var(--text);
   font-size: 0.9rem;
 }
 
@@ -58,10 +84,12 @@ input, textarea, select {
   width: 100%;
   padding: 0.5rem;
   margin-bottom: 0.75rem;
-  border: 1px solid #ddd;
+  border: 1px solid var(--border);
   border-radius: 4px;
   font-size: 0.9rem;
   transition: border-color 0.2s;
+  background: var(--surface);
+  color: var(--text);
 }
 
 textarea {
@@ -74,7 +102,8 @@ input:focus, textarea:focus, select:focus {
   border-color: var(--primary);
   box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.1);
 }
-button{
+
+button {
   margin-top: 0.4vh;
   border: none;
   padding: 0.5rem 1rem;
@@ -102,13 +131,15 @@ button[type="submit"]:hover {
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 1rem;
   padding: 0.5rem;
+  background: var(--bg);
 }
 
 .todo {
-  background: var(--white);
+  background: var(--surface);
+  color: var(--text);
   padding: 1rem;
   border-radius: 6px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 3px var(--shadow);
   position: relative;
   height: fit-content;
 }
@@ -116,18 +147,18 @@ button[type="submit"]:hover {
 .todo h1 {
   font-size: 1.1rem;
   margin-bottom: 0.5rem;
-  color: var(--dark);
+  color: var(--text);
   text-align: left;
 }
 
 .todo h3 {
   font-size: 0.9rem;
-  color: var(--gray);
+  color: var(--text);
   margin-bottom: 0.5rem;
 }
 
 .todo p {
-  color: var(--gray);
+  color: var(--text);
   margin-bottom: 0.75rem;
   font-size: 0.9rem;
 }
@@ -153,7 +184,7 @@ button[type="submit"]:hover {
 
 .todo.taskdone {
   opacity: 0.7;
-  background-color: rgba(76, 201, 240, 0.1);
+  background-color: light-dark(rgba(76, 201, 240, 0.1), rgba(76, 201, 240, 0.05));
 }
 
 .todo.taskdone h1,
@@ -203,21 +234,20 @@ button[type="submit"]:hover {
   }
 }
 
-/* Importance level styles */
 .todo.notimportant {
   border-left: 4px solid var(--gray);
-  background-color: rgba(108, 117, 125, 0.03);
+  background-color: light-dark(rgba(108, 117, 125, 0.03), rgba(108, 117, 125, 0.1));
   opacity: 0.9;
 }
 
 .todo.kindaimportant {
   border-left: 4px solid var(--warning);
-  background-color: rgba(248, 150, 30, 0.05);
+  background-color: light-dark(rgba(248, 150, 30, 0.05), rgba(248, 150, 30, 0.1));
 }
 
 .todo.reallyimportant {
   border-left: 4px solid var(--danger);
-  background-color: rgba(247, 37, 133, 0.05);
+  background-color: light-dark(rgba(247, 37, 133, 0.05), rgba(247, 37, 133, 0.1));
   animation: shake 0.5s 5;
   box-shadow: 0 0 10px rgba(247, 37, 133, 0.2);
 }
@@ -234,7 +264,9 @@ button[type="submit"]:hover {
 .todo.taskdone.notimportant {
   animation: none;
   opacity: 0.7;
-}.main-container {
+}
+
+.main-container {
   margin: 0;
   display: flex;
   width: 95vw;
@@ -244,14 +276,6 @@ button[type="submit"]:hover {
   position: absolute;
   left: 5vh;
   top: 10vh;
-
-}
-
-#formTarefa {
-  width: 25%;
-  flex-shrink: 0;
-  height: fit-content;
-}
 
 #tarefas {
   flex-grow: 1;
